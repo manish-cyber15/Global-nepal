@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HamroGlobal | Nepali Products, Freelance & Escrow Trade</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nepalRed: '#DC143C',
+                        nepalBlue: '#003893',
+                        khaltiViolet: '#5C2D91',
+                        esewaGreen: '#60BB46'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-nepalBlue text-white text-xs py-2 px-4 text-center font-medium flex justify-between items-center px-6">
+        <span>🇳🇵 Exporting Authentic Nepali Goods Worldwide | Protected by 100% Buyer Escrow Guarantee</span>
+        <div class="flex items-center gap-4">
+            <!-- Currency Switcher -->
+            <label class="flex items-center gap-1 cursor-pointer">
+                <span>Currency:</span>
+                <select id="global-currency" onchange="toggleCurrency(this.value)" class="bg-blue-900 text-white rounded px-2 py-0.5 border border-blue-700 text-xs focus:outline-none">
+                    <option value="USD">USD ($)</option>
+                    <option value="NPR">NPR (रू)</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION HEADER -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="bg-nepalRed text-white p-2.5 rounded-xl font-black text-xl flex items-center justify-center">
+                    🇳🇵
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight text-slate-900">Hamro<span class="text-nepalRed">Global</span></span>
+                    <span class="block text-[10px] tracking-widest text-slate-500 uppercase font-semibold">Nepal Trade & Freelance Hub</span>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="hidden lg:flex items-center gap-6 font-semibold text-sm text-slate-600">
+                <button onclick="navigateTo('home')" class="nav-btn hover:text-nepalRed transition">Home</button>
+                <button onclick="navigateTo('products')" class="nav-btn hover:text-nepalRed transition">Shop Goods</button>
+                <button onclick="navigateTo('freelance')" class="nav-btn hover:text-nepalRed transition">Freelance Hub</button>
+                <button onclick="navigateTo('portal')" class="nav-btn hover:text-nepalRed transition">Sell / List Item</button>
+                <button onclick="navigateTo('escrow')" class="nav-btn text-emerald-600 font-bold hover:text-emerald-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-shield-halved"></i> Escrow Protection
+                </button>
+                <button onclick="navigateTo('shipping')" class="nav-btn hover:text-nepalRed transition">Global Shipping</button>
+            </nav>
+
+            <!-- User Cart & Quick Action -->
+            <div class="flex items-center gap-3">
+                <button onclick="navigateTo('checkout')" class="relative bg-slate-100 hover:bg-slate-200 text-slate-800 p-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-nepalRed text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">1</span>
+                </button>
+                <button onclick="navigateTo('portal')" class="bg-nepalRed hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md transition">
+                    + Post Product / Job
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= VIEW 1: HOME PAGE ================= -->
+    <main id="view-home" class="page-view active flex-1">
+        <!-- HERO SECTION -->
+        <section class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                <div class="space-y-6">
+                    <span class="inline-block bg-nepalRed/20 border border-nepalRed/40 text-red-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Direct From Nepal To The World
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl font-black leading-tight">
+                        Buy Nepali Goods & Hire Remote Nepali Talent Safely.
+                    </h1>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Authentic Himalayan Churpi, Handwoven Dhaka, Medicinal Herbs like Yarsagumba, plus skilled Nepali Freelancers worldwide—backed by <strong>100% Escrow Protection</strong> and global shipping.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('products')" class="bg-nepalRed hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2">
+                            <i class="fa-solid fa-bag-shopping"></i> Browse Products
+                        </button>
+                        <button onclick="navigateTo('freelance')" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3.5 rounded-xl border border-slate-700 transition flex items-center gap-2">
+                            <i class="fa-solid fa-user-tie"></i> Hire Freelancers
+                        </button>
+                    </div>
+                </div>
+                <!-- Hero Feature Cards -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div onclick="navigateTo('products')" class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 hover:border-nepalRed transition cursor-pointer">
+                        <div class="text-3xl mb-2">🧀</div>
+                        <h3 class="font-bold text-white text-base">Himalayan Churpi</h3>
+                        <p class="text-xs text-slate-400 mt-1">100% Organic Hard Cheese & Dog Chews</p>
+                    </div>
+                    <div onclick="navigateTo('products')" class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 hover:border-nepalRed transition cursor-pointer">
+                        <div class="text-3xl mb-2">🧵</div>
+                        <h3 class="font-bold text-white text-base">Palpali Dhaka</h3>
+                        <p class="text-xs text-slate-400 mt-1">Authentic Topi, Shawls & Fabrics</p>
+                    </div>
+                    <div onclick="navigateTo('products')" class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 hover:border-nepalRed transition cursor-pointer">
+                        <div class="text-3xl mb-2">🌿</div>
+                        <h3 class="font-bold text-white text-base">Himalayan Herbs</h3>
+                        <p class="text-xs text-slate-400 mt-1">Yarsagumba, Timur & Medicinal Oils</p>
+                    </div>
+                    <div onclick="navigateTo('freelance')" class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 hover:border-nepalRed transition cursor-pointer">
+                        <div class="text-3xl mb-2">💻</div>
+                        <h3 class="font-bold text-white text-base">Global Freelancers</h3>
+                        <p class="text-xs text-slate-400 mt-1">Developers, Designers & Translators</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST BADGES BAR -->
+        <section class="bg-white border-b border-slate-200 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-shield-halved text-2xl text-emerald-600"></i>
+                    <div class="text-left">
+                        <h4 class="font-bold text-xs text-slate-900 uppercase">Escrow Protected</h4>
+                        <p class="text-[11px] text-slate-500">Funds released only after arrival</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-plane-departure text-2xl text-blue-600"></i>
+                    <div class="text-left">
+                        <h4 class="font-bold text-xs text-slate-900 uppercase">Global Express</h4>
+                        <p class="text-[11px] text-slate-500">Ships to USA, UK, Aus & 120+ Countries</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-wallet text-2xl text-khaltiViolet"></i>
+                    <div class="text-left">
+                        <h4 class="font-bold text-xs text-slate-900 uppercase">Khalti, eSewa & Stripe</h4>
+                        <p class="text-[11px] text-slate-500">Local & International Cards</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-certificate text-2xl text-amber-500"></i>
+                    <div class="text-left">
+                        <h4 class="font-bold text-xs text-slate-900 uppercase">Verified Sellers</h4>
+                        <p class="text-[11px] text-slate-500">100% Genuine Organic & Handcrafted</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= VIEW 2: PRODUCTS MARKETPLACE ================= -->
+    <main id="view-products" class="page-view flex-1 py-10 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Authentic Nepali Niche Products</h2>
+                    <p class="text-slate-500 text-sm">Directly sourced from local farmers, weavers, and craftsmen in Nepal.</p>
+                </div>
+                <!-- Category Filter -->
+                <div class="flex gap-2 overflow-x-auto w-full md:w-auto pb-2">
+                    <button onclick="filterProducts('all')" class="bg-nepalRed text-white text-xs font-bold px-4 py-2 rounded-xl">All Items</button>
+                    <button onclick="filterProducts('food')" class="bg-white border border-slate-300 text-slate-700 text-xs font-bold px-4 py-2 rounded-xl hover:bg-slate-50">Churpi & Food</button>
+                    <button onclick="filterProducts('textile')" class="bg-white border border-slate-300 text-slate-700 text-xs font-bold px-4 py-2 rounded-xl hover:bg-slate-50">Dhaka & Textiles</button>
+                    <button onclick="filterProducts('herbs')" class="bg-white border border-slate-300 text-slate-700 text-xs font-bold px-4 py-2 rounded-xl hover:bg-slate-50">Medicinal Herbs</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                <!-- Product 1: Churpi -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="relative h-52 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Himalayan Churpi">
+                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">Organic Food</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 text-base">Authentic Himalayan Hard Churpi (500g)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Made from pure Yak milk in Ilam, Nepal. High protein, long-lasting.</p>
+                        <div class="flex items-center gap-1 text-amber-400 text-xs my-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-[11px] ml-1">(48 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase">Price</span>
+                                <span class="text-lg font-black text-slate-900 price-tag" data-usd="22" data-npr="2900">$22.00</span>
+                            </div>
+                            <button onclick="addToCart('Himalayan Hard Churpi', 22, 2900)" class="bg-nepalRed hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                Buy with Escrow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Palpali Dhaka Topi & Shawl -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="relative h-52 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1606760227091-3dd850d97f1d?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Dhaka Fabric">
+                        <span class="absolute top-3 left-3 bg-nepalRed text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">Handloom</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 text-base">Handwoven Palpali Dhaka Shawl</h3>
+                        <p class="text-xs text-slate-500 mt-1">Traditional geometric hand-loomed patterns by Palpa artisans.</p>
+                        <div class="flex items-center gap-1 text-amber-400 text-xs my-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-[11px] ml-1">(32 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase">Price</span>
+                                <span class="text-lg font-black text-slate-900 price-tag" data-usd="45" data-npr="5950">$45.00</span>
+                            </div>
+                            <button onclick="addToCart('Palpali Dhaka Shawl', 45, 5950)" class="bg-nepalRed hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                Buy with Escrow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Yarsagumba & Medicinal Plants -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <div class="relative h-52 bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1509358271058-acd02cc93858?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" alt="Medicinal Herbs">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">Wild Herb</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 text-base">Wild Himalayan Yarsagumba & Timur Set</h3>
+                        <p class="text-xs text-slate-500 mt-1">Sourced high-altitude Dolpa region. Certified organic & lab tested.</p>
+                        <div class="flex items-center gap-1 text-amber-400 text-xs my-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 text-[11px] ml-1">(19 reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block uppercase">Price</span>
+                                <span class="text-lg font-black text-slate-900 price-tag" data-usd="120" data-npr="15800">$120.00</span>
+                            </div>
+                            <button onclick="addToCart('Wild Yarsagumba Set', 120, 15800)" class="bg-nepalRed hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                Buy with Escrow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= VIEW 3: GLOBAL FREELANCE HUB ================= -->
+    <main id="view-freelance" class="page-view flex-1 py-10 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 rounded-3xl p-8 text-white mb-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xs font-bold text-nepalRed uppercase tracking-widest">Nepali Diaspora & Local Talent</span>
+                    <h2 class="text-3xl font-black mt-1">Hire Skilled Nepali Freelancers Worldwide</h2>
+                    <p class="text-slate-300 text-sm mt-2 max-w-xl">
+                        Connect with Nepali software engineers, Thangka artists, Pashmina designers, and Nepali-English translators. Pay safely via Escrow.
+                    </p>
+                </div>
+                <button onclick="navigateTo('portal')" class="bg-nepalRed hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition text-sm">
+                    Offer Your Freelance Services
+                </button>
+            </div>
+
+            <!-- Freelancer List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Freelancer 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-nepalBlue text-white font-bold rounded-full flex items-center justify-center text-xl">
+                            AA
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-base">Aarav Adhikari</h3>
+                            <p class="text-xs text-slate-500">Full-Stack MERN Developer (Kathmandu)</p>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Verified Freelancer</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4">5+ years building Web3 and E-commerce platforms for US & European clients.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">ReactJS</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Node.js</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Stripe API</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="font-bold text-slate-900 text-sm">$35 / hr</span>
+                        <button onclick="hireFreelancer('Aarav Adhikari', 35)" class="bg-slate-900 hover:bg-nepalRed text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                            Hire via Escrow
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Freelancer 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-khaltiViolet text-white font-bold rounded-full flex items-center justify-center text-xl">
+                            PS
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-base">Pooja Shrestha</h3>
+                            <p class="text-xs text-slate-500">Handicraft & Textile Designer (Lalitpur)</p>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Verified Freelancer</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4">Expert in custom Dhaka pattern creation, Tibetan Thangka digitization, and brand identity.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Textile Design</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Illustrator</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Cultural Art</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="font-bold text-slate-900 text-sm">$25 / hr</span>
+                        <button onclick="hireFreelancer('Pooja Shrestha', 25)" class="bg-slate-900 hover:bg-nepalRed text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                            Hire via Escrow
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Freelancer 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-emerald-700 text-white font-bold rounded-full flex items-center justify-center text-xl">
+                            RG
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-base">Rohan Gurung</h3>
+                            <p class="text-xs text-slate-500">Nepali-English Translator & Legal Doc Specialist</p>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Verified Freelancer</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-4">Professional sworn translation for business contracts, export compliance, and government documents.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Translation</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Export Docs</span>
+                        <span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-1 rounded">Legal</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                        <span class="font-bold text-slate-900 text-sm">$20 / hr</span>
+                        <button onclick="hireFreelancer('Rohan Gurung', 20)" class="bg-slate-900 hover:bg-nepalRed text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                            Hire via Escrow
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= VIEW 4: BUY & SELL PORTAL ================= -->
+    <main id="view-portal" class="page-view flex-1 py-10 bg-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md">
+                <div class="border-b border-slate-200 pb-6 mb-6 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Seller & Freelance Posting Portal</h2>
+                        <p class="text-slate-500 text-xs">List your Nepali products for global buyers or register as a freelancer.</p>
+                    </div>
+                    <span class="bg-nepalRed/10 text-nepalRed font-bold text-xs px-3 py-1 rounded-full">Seller KYC Active</span>
+                </div>
+
+                <form onsubmit="handlePortalSubmit(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-2">Posting Type</label>
+                        <select id="post-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed focus:outline-none">
+                            <option value="product">Sell Nepali Goods (Churpi, Dhaka, Herbs, Handicrafts)</option>
+                            <option value="freelance">Offer Freelance Skill / Services</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Title / Product Name</label>
+                            <input type="text" required placeholder="e.g. Organic Ilam Tea or React Developer" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Base Price (USD or NPR)</label>
+                            <input type="text" required placeholder="e.g. $30 or Rs. 4000" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Detailed Description</label>
+                        <textarea rows="4" required placeholder="Describe product origins, weight, materials or your professional background..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed focus:outline-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Upload Photo / Proof of Origin</label>
+                        <input type="file" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-500">
+                    </div>
+
+                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-emerald-600 text-xl"></i>
+                        <p class="text-xs text-emerald-800">All sales made through this platform are protected by <strong>HamroEscrow</strong>. Payments will be deposited directly to your Khalti, eSewa, or Nepali Bank Account once the buyer accepts delivery.</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-nepalRed hover:bg-red-700 text-white font-bold py-3.5 rounded-xl transition">
+                        Publish Listing to Global Marketplace
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= VIEW 5: ESCROW PROTECTION DEMO ================= -->
+    <main id="view-escrow" class="page-view flex-1 py-10 bg-slate-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">100% Risk-Free Cross Border Trade</span>
+                <h2 class="text-3xl font-black text-slate-900 mt-1">How HamroEscrow Protects Buyers & Sellers</h2>
+                <p class="text-slate-500 text-sm mt-2">Interactive workflow demo showing how payments are safely locked until delivery approval.</p>
+            </div>
+
+            <!-- Escrow Stepper Demo -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 text-center" id="escrow-steps">
+                    <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-emerald-800">
+                        <div class="w-8 h-8 bg-emerald-600 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-2 text-sm">1</div>
+                        <h4 class="font-bold text-xs">Buyer Pays</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">Stripe, Khalti, or Bank</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600" id="step-2-box">
+                        <div class="w-8 h-8 bg-slate-300 text-slate-700 font-bold rounded-full flex items-center justify-center mx-auto mb-2 text-sm">2</div>
+                        <h4 class="font-bold text-xs">Funds Locked</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">Safe in Escrow Vault</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600" id="step-3-box">
+                        <div class="w-8 h-8 bg-slate-300 text-slate-700 font-bold rounded-full flex items-center justify-center mx-auto mb-2 text-sm">3</div>
+                        <h4 class="font-bold text-xs">Global Shipping</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">Seller dispatches item</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600" id="step-4-box">
+                        <div class="w-8 h-8 bg-slate-300 text-slate-700 font-bold rounded-full flex items-center justify-center mx-auto mb-2 text-sm">4</div>
+                        <h4 class="font-bold text-xs">Fund Release</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">Payout to Nepali Seller</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Demo Controller -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h4 class="font-bold text-base" id="escrow-demo-title">Step 1 Active: Buyer Deposits Payment</h4>
+                        <p class="text-xs text-slate-300 mt-1" id="escrow-demo-desc">Buyer places order for $45 Dhaka Shawl. Payment is held securely in the escrow account.</p>
+                    </div>
+                    <button onclick="advanceEscrowDemo()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black px-6 py-3 rounded-xl transition text-xs uppercase tracking-wider whitespace-nowrap">
+                        Simulate Next Step →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= VIEW 6: GLOBAL SHIPPING & CALCULATOR ================= -->
+    <main id="view-shipping" class="page-view flex-1 py-10 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md mb-8">
+                <h2 class="text-2xl font-black text-slate-900 mb-2">Global Shipping Rate Estimator</h2>
+                <p class="text-slate-500 text-xs mb-6">Calculate door-to-door express delivery costs from Nepal to anywhere in the world.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Destination Country</label>
+                        <select id="ship-country" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed">
+                            <option value="15">🇺🇸 United States ($15.00)</option>
+                            <option value="18">🇬🇧 United Kingdom ($18.00)</option>
+                            <option value="20">🇦🇺 Australia ($20.00)</option>
+                            <option value="12">🇯🇵 Japan ($12.00)</option>
+                            <option value="16">🇪🇺 European Union ($16.00)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Package Weight (KG)</label>
+                        <input type="number" id="ship-weight" value="1" min="1" max="50" oninput="calculateShipping()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Courier Partner</label>
+                        <select class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-nepalRed">
+                            <option>DHL Express (3-5 Days)</option>
+                            <option>FedEx Nepal Air (4-7 Days)</option>
+                            <option>Nepal Post EMS (7-14 Days)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white p-5 rounded-2xl flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-slate-400 block">Estimated Air Freight Cost:</span>
+                        <span id="shipping-cost-display" class="text-xl font-bold text-emerald-400">$15.00 USD</span>
+                    </div>
+                    <button onclick="alert('Shipping rate applied to your next order!')" class="bg-nepalRed hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition">
+                        Apply Shipping Rate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Package Tracking Demo -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Track Nepal Air Cargo Package</h3>
+                <div class="flex gap-2 mb-6">
+                    <input type="text" value="NP-8829102-EX" readonly class="bg-slate-100 border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-mono flex-1 text-slate-700">
+                    <button onclick="alert('Package Status: In Transit from Tribhuvan International Airport (KTM) to JFK Airport (NYC)')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition">
+                        Track Live
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= VIEW 7: CHECKOUT & MULTI-GATEWAY SYSTEM ================= -->
+    <main id="view-checkout" class="page-view flex-1 py-10 bg-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                <!-- Order Summary -->
+                <div class="p-8 bg-slate-900 text-white space-y-6">
+                    <div class="border-b border-slate-800 pb-4">
+                        <span class="text-xs font-bold text-emerald-400 uppercase">Escrow Protected Order</span>
+                        <h3 class="text-xl font-black mt-1">Checkout Summary</h3>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400" id="cart-item-title">Himalayan Hard Churpi (500g)</span>
+                            <span class="font-bold text-white" id="cart-item-price">$22.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Global Air Express Shipping</span>
+                            <span class="font-bold text-white">$15.00</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-emerald-400">
+                            <span>HamroEscrow Protection Fee</span>
+                            <span>FREE ($0.00)</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-4 flex justify-between items-center">
+                        <span class="text-slate-400 text-sm font-semibold">Total Payable:</span>
+                        <span id="checkout-total-price" class="text-2xl font-black text-emerald-400">$37.00 USD</span>
+                    </div>
+
+                    <div class="bg-slate-800 p-4 rounded-xl text-xs text-slate-300 space-y-2">
+                        <p><i class="fa-solid fa-lock text-emerald-400"></i> Payment is kept in escrow until you receive and verify the goods or service.</p>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="p-8">
+                    <h3 class="font-black text-slate-900 text-lg mb-4">Select Payment Gateway</h3>
+
+                    <!-- Gateway Tabs -->
+                    <div class="space-y-3 mb-6">
+                        <!-- Khalti -->
+                        <label onclick="selectGateway('khalti')" class="flex items-center justify-between p-3.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-khaltiViolet transition gateway-option">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" class="text-khaltiViolet focus:ring-khaltiViolet" checked>
+                                <div>
+                                    <span class="text-sm font-bold text-slate-800 block">Khalti Wallet</span>
+                                    <span class="text-[10px] text-slate-500">For Nepali Wallet Users</span>
+                                </div>
+                            </div>
+                            <span class="bg-khaltiViolet text-white font-bold text-[10px] px-2.5 py-1 rounded">Khalti</span>
+                        </label>
+
+                        <!-- eSewa -->
+                        <label onclick="selectGateway('esewa')" class="flex items-center justify-between p-3.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-esewaGreen transition gateway-option">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" class="text-esewaGreen focus:ring-esewaGreen">
+                                <div>
+                                    <span class="text-sm font-bold text-slate-800 block">eSewa Mobile Wallet</span>
+                                    <span class="text-[10px] text-slate-500">Nepal's Popular E-Wallet</span>
+                                </div>
+                            </div>
+                            <span class="bg-esewaGreen text-white font-bold text-[10px] px-2.5 py-1 rounded">eSewa</span>
+                        </label>
+
+                        <!-- Nepali Bank / ConnectIPS -->
+                        <label onclick="selectGateway('bank')" class="flex items-center justify-between p-3.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-blue-600 transition gateway-option">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" class="text-blue-600 focus:ring-blue-600">
+                                <div>
+                                    <span class="text-sm font-bold text-slate-800 block">ConnectIPS / Nepali Banks</span>
+                                    <span class="text-[10px] text-slate-500">Nabil, Global IME, NIC Asia & All Banks</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-building-columns text-blue-600 text-lg"></i>
+                        </label>
+
+                        <!-- Stripe (Foreign Credit Card) -->
+                        <label onclick="selectGateway('stripe')" class="flex items-center justify-between p-3.5 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-indigo-600 transition gateway-option">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" class="text-indigo-600 focus:ring-indigo-600">
+                                <div>
+                                    <span class="text-sm font-bold text-slate-800 block">Stripe (Foreign Cards)</span>
+                                    <span class="text-[10px] text-slate-500">Visa, Mastercard, AMEX (Worldwide)</span>
+                                </div>
+                            </div>
+                            <i class="fa-brands fa-stripe text-indigo-600 text-2xl"></i>
+                        </label>
+                    </div>
+
+                    <button onclick="processPayment()" id="pay-button" class="w-full bg-khaltiViolet hover:opacity-90 text-white font-black py-3.5 rounded-xl transition text-sm shadow-md">
+                        Pay $37.00 via Khalti Escrow
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-10 mt-auto border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 text-white font-black text-lg mb-3">
+                    <span>🇳🇵 HamroGlobal</span>
+                </div>
+                <p class="leading-relaxed text-slate-400">
+                    Connecting authentic Nepali local producers, organic farmers, and global remote talent with buyers worldwide using safe Escrow technology.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Popular Nepali Goods</h4>
+                <ul class="space-y-2">
+                    <li>Ilam Churpi & Dog Chews</li>
+                    <li>Palpali Dhaka Topi & Shawls</li>
+                    <li>Yarsagumba & Himalayan Herbs</li>
+                    <li>Handmade Singing Bowls</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Freelance Skills</h4>
+                <ul class="space-y-2">
+                    <li>Full-Stack Web Developers</li>
+                    <li>Pashmina & Textile Designers</li>
+                    <li>Nepali English Translators</li>
+                    <li>Export Compliance Advisors</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Accepted Payments</h4>
+                <p class="text-slate-400 mb-3">Integrated with all major local and global gateways:</p>
+                <div class="flex flex-wrap gap-2 text-white font-bold text-[10px]">
+                    <span class="bg-khaltiViolet px-2 py-1 rounded">Khalti</span>
+                    <span class="bg-esewaGreen px-2 py-1 rounded">eSewa</span>
+                    <span class="bg-blue-600 px-2 py-1 rounded">ConnectIPS</span>
+                    <span class="bg-indigo-600 px-2 py-1 rounded">Stripe</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 pt-6 text-center text-slate-500">
+            © 2026 HamroGlobal Tech Nepal. Built for cross-border Nepali e-commerce & freelance trade.
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        // Currency State
+        let currentCurrency = 'USD';
+        let currentCartPriceUSD = 22;
+        let currentCartPriceNPR = 2900;
+        let selectedGatewayName = 'Khalti';
+
+        // Navigation Handler
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            const target = document.getElementById(`view-${pageId}`);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Toggle Global Currency
+        function toggleCurrency(curr) {
+            currentCurrency = curr;
+            const priceTags = document.querySelectorAll('.price-tag');
+            
+            priceTags.forEach(tag => {
+                const usd = tag.getAttribute('data-usd');
+                const npr = tag.getAttribute('data-npr');
+                if (curr === 'NPR') {
+                    tag.innerText = `रू ${npr}`;
+                } else {
+                    tag.innerText = `$${usd}.00`;
+                }
+            });
+
+            updateCheckoutTotals();
+        }
+
+        // Product Add to Cart Logic
+        function addToCart(title, usdPrice, nprPrice) {
+            currentCartPriceUSD = usdPrice;
+            currentCartPriceNPR = nprPrice;
+            document.getElementById('cart-item-title').innerText = title;
+            updateCheckoutTotals();
+            navigateTo('checkout');
+        }
+
+        function hireFreelancer(name, hourlyRateUSD) {
+            const nprRate = hourlyRateUSD * 132;
+            addToCart(`Freelance Escrow Deposit: ${name} (5 Hours)`, hourlyRateUSD * 5, nprRate * 5);
+        }
+
+        function updateCheckoutTotals() {
+            const shipCostUSD = 15;
+            const shipCostNPR = 2000;
+
+            if (currentCurrency === 'NPR') {
+                const itemFormatted = `रू ${currentCartPriceNPR}`;
+                const totalFormatted = `रू ${currentCartPriceNPR + shipCostNPR}`;
+                document.getElementById('cart-item-price').innerText = itemFormatted;
+                document.getElementById('checkout-total-price').innerText = `${totalFormatted} NPR`;
+                document.getElementById('pay-button').innerText = `Pay ${totalFormatted} via ${selectedGatewayName} Escrow`;
+            } else {
+                const itemFormatted = `$${currentCartPriceUSD}.00`;
+                const totalFormatted = `$${currentCartPriceUSD + shipCostUSD}.00`;
+                document.getElementById('cart-item-price').innerText = itemFormatted;
+                document.getElementById('checkout-total-price').innerText = `${totalFormatted} USD`;
+                document.getElementById('pay-button').innerText = `Pay ${totalFormatted} via ${selectedGatewayName} Escrow`;
+            }
+        }
+
+        // Payment Gateway Selector
+        function selectGateway(gateway) {
+            const btn = document.getElementById('pay-button');
+            if (gateway === 'khalti') {
+                selectedGatewayName = 'Khalti';
+                btn.className = "w-full bg-khaltiViolet hover:opacity-90 text-white font-black py-3.5 rounded-xl transition text-sm shadow-md";
+            } else if (gateway === 'esewa') {
+                selectedGatewayName = 'eSewa';
+                btn.className = "w-full bg-esewaGreen hover:opacity-90 text-white font-black py-3.5 rounded-xl transition text-sm shadow-md";
+            } else if (gateway === 'bank') {
+                selectedGatewayName = 'ConnectIPS / Bank';
+                btn.className = "w-full bg-blue-600 hover:opacity-90 text-white font-black py-3.5 rounded-xl transition text-sm shadow-md";
+            } else if (gateway === 'stripe') {
+                selectedGatewayName = 'Stripe Credit Card';
+                btn.className = "w-full bg-indigo-600 hover:opacity-90 text-white font-black py-3.5 rounded-xl transition text-sm shadow-md";
+            }
+            updateCheckoutTotals();
+        }
+
+        function processPayment() {
+            alert(`Demo Payment Successful!\n\nYour payment has been deposited securely into HamroEscrow via ${selectedGatewayName}. The seller/freelancer has been notified to ship your item.`);
+            navigateTo('escrow');
+        }
+
+        // Portal Form Submit Handler
+        function handlePortalSubmit(e) {
+            e.preventDefault();
+            alert('Your item/services listing has been submitted successfully and is now active for global buyers!');
+            navigateTo('products');
+        }
+
+        // Interactive Escrow Stepper Simulation
+        let currentStep = 1;
+        function advanceEscrowDemo() {
+            currentStep = (currentStep % 4) + 1;
+            const title = document.getElementById('escrow-demo-title');
+            const desc = document.getElementById('escrow-demo-desc');
+
+            if (currentStep === 1) {
+                title.innerText = "Step 1 Active: Buyer Deposits Payment";
+                desc.innerText = "Buyer places order for $45 Dhaka Shawl. Payment is held securely in the escrow account.";
+            } else if (currentStep === 2) {
+                title.innerText = "Step 2 Active: Funds Locked in Escrow Vault";
+                desc.innerText = "HamroEscrow locks the funds. Neither seller nor buyer can withdraw until dispatch.";
+                document.getElementById('step-2-box').className = "p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-emerald-800";
+            } else if (currentStep === 3) {
+                title.innerText = "Step 3 Active: Global Express Shipping";
+                desc.innerText = "Artisan dispatches the parcel via DHL/FedEx with live tracking code provided to buyer.";
+                document.getElementById('step-3-box').className = "p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-emerald-800";
+            } else if (currentStep === 4) {
+                title.innerText = "Step 4 Active: Buyer Approves & Escrow Release";
+                desc.innerText = "Buyer receives parcel, verifies product quality, and releases payment directly to seller's Khalti/Bank.";
+                document.getElementById('step-4-box').className = "p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-500 text-emerald-800";
+            }
+        }
+
+        // Global Shipping Calculator
+        function calculateShipping() {
+            const countryPrice = parseFloat(document.getElementById('ship-country').value);
+            const weight = parseFloat(document.getElementById('ship-weight').value) || 1;
+            const total = countryPrice * weight;
+            document.getElementById('shipping-cost-display').innerText = `$${total.toFixed(2)} USD`;
+        }
+
+        // Product Filter
+        function filterProducts(cat) {
+            // Simplified filter notice for demo
+            alert(`Filtered category by: ${cat.toUpperCase()}`);
+        }
+    </script>
+</body>
+</html>
